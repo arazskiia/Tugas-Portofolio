@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Clara</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav>
+        <div class="logo">Clara's Portfolio</div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="portofolio.html">Portfolio</a></li>
+          <li><a href="form.html">Form</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1 class="page-title">Request Project</h1>
+      <p class="page-subtitle">
+        Tertarik untuk berkolaborasi? Isi form di bawah ini untuk memesan jasa
+        pembuatan website atau proyek lainnya
+      </p>
+
+      <div class="form-container">
+        <div class="success-message" id="successMessage">
+          Terima kasih! Permintaan Anda telah berhasil dikirim. Kami akan segera
+          menghubungi Anda.
+        </div>
+
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <!-- Nama -->
+          <div class="form-group">
+            <label for="nama"
+              >Nama Lengkap <span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="nama"
+              name="nama"
+              required
+              placeholder="Masukkan nama lengkap Anda" />
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email <span class="required">*</span></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="contoh@email.com" />
+          </div>
+
+          <!-- Jenis Layanan -->
+          <div class="form-group">
+            <label for="layanan"
+              >Jenis Layanan <span class="required">*</span></label
+            >
+            <select id="layanan" name="layanan" required>
+              <option value="">-- Pilih Jenis Layanan --</option>
+              <option value="website">Pembuatan Website</option>
+              <option value="aplikasi">Pengembangan Aplikasi</option>
+              <option value="game">Pembuatan Game</option>
+              <option value="konten">Konten Edukasi</option>
+              <option value="konsultasi">Konsultasi IT</option>
+              <option value="lainnya">Lainnya</option>
+            </select>
+          </div>
+
+          <!-- Budget Range -->
+          <div class="form-group">
+            <label>Budget Range <span class="required">*</span></label>
+            <div class="radio-group">
+              <div class="radio-item">
+                <input
+                  type="radio"
+                  id="budget1"
+                  name="budget"
+                  value="< 5 juta"
+                  required />
+                <label for="budget1">< 5 Juta</label>
+              </div>
+              <div class="radio-item">
+                <input
+                  type="radio"
+                  id="budget2"
+                  name="budget"
+                  value="5-10 juta" />
+                <label for="budget2">5 - 10 Juta</label>
+              </div>
+              <div class="radio-item">
+                <input
+                  type="radio"
+                  id="budget3"
+                  name="budget"
+                  value="10-20 juta" />
+                <label for="budget3">10 - 20 Juta</label>
+              </div>
+              <div class="radio-item">
+                <input
+                  type="radio"
+                  id="budget4"
+                  name="budget"
+                  value="> 20 juta" />
+                <label for="budget4">> 20 Juta</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deskripsi Proyek -->
+          <div class="form-group">
+            <label for="deskripsi"
+              >Deskripsi Proyek <span class="required">*</span></label
+            >
+            <textarea
+              id="deskripsi"
+              name="deskripsi"
+              required
+              placeholder="Jelaskan detail proyek yang Anda inginkan..."></textarea>
+          </div>
+
+          <!-- Fitur Tambahan -->
+          <div class="form-group">
+            <label>Fitur Tambahan yang Diinginkan</label>
+            <div class="checkbox-group">
+              <div class="checkbox-item">
+                <input
+                  type="checkbox"
+                  id="responsive"
+                  name="fitur"
+                  value="responsive" />
+                <label for="responsive">Responsive Design</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="seo" name="fitur" value="seo" />
+                <label for="seo">SEO Optimization</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="cms" name="fitur" value="cms" />
+                <label for="cms">Content Management System</label>
+              </div>
+              <div class="checkbox-item">
+                <input
+                  type="checkbox"
+                  id="ecommerce"
+                  name="fitur"
+                  value="ecommerce" />
+                <label for="ecommerce">E-Commerce Integration</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn-submit">Kirim Permintaan</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        Created by Clara | Mahasiswi
+        <a href="https://itpln.ac.id" target="_blank">ITPLN</a>
+      </p>
+      <p>&copy; 2025 All Rights Reserved</p>
+    </footer>
+
+    <script>
+      function toggleMenu() {
+        const navLinks = document.getElementById("navLinks");
+        navLinks.classList.toggle("active");
+      }
+
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        // Show success message
+        const successMessage = document.getElementById("successMessage");
+        successMessage.style.display = "block";
+
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        // Reset form
+        document.getElementById("contactForm").reset();
+
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          successMessage.style.display = "none";
+        }, 5000);
+
+        return false;
+      }
+    </script>
+  </body>
+</html>
